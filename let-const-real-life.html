@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>real life let const</title>
+</head>
+<body>
+<script>
+    //to avorid overrride data "var" needs to be wrapped in an immediately invoked function;
+//    (function () {
+//        var name = "pino";
+//        console.log(name); //pino
+//    })();
+//    //"let" and "const" don't need that because are block scope var
+//    {
+//        const name1 = "gino";
+//        console.log(name1); // gino
+//    }
+//    console.log(name); // ""
+//    console.log(name1); // Uncaught Error
+
+    for(var i = 0; i<10; i++) {
+//        console.log(i);
+        setTimeout(function () {
+            console.log("the number is " + i); // shows 10, because "i" is returned to global scope after the loop ends
+        }, 1000)
+    }
+//
+    for(let i = 0; i<10; i++) {
+//        console.log(i);
+        setTimeout(function () {
+            console.log("the number is " + i); //return all the numbers because let is a scope var, it have sense only into the defined {} scope
+        }, 1000)
+    }
+
+</script>
+</body>
+</html>

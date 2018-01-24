@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Let Const</title>
+</head>
+<body>
+<script>
+//    const key = '123456';
+//    let points = 50;
+//    let winner = false;
+//    if(points > 40) {
+//        console.log("it ran");
+//        let winner = true; //let and const are block var, there're uncaught outer the block {}
+//        console.log(winner);
+//    }
+//    points = 60; //let can be updated
+//    key = "12354"; //ERROR: const cannot be updated
+//    console.log(winner);
+
+    const person = {
+        name: "pino",
+        age: 28
+    };
+
+    const pino = Object.freeze(person); // to freeze all the value inside const object
+    pino.age = 30;
+    console.log(pino.age); //log 28
+
+</script>
+</body>
+</html>
