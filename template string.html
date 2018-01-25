@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>template string</title>
+</head>
+<body>
+<script>
+    const person = {
+        name: 'pino',
+        job: 'fancazzista',
+        city: 'Bari',
+        bio: 'a megl parola nonn esc'
+    };
+
+//    const markup = `
+//        <div class="person">
+//            <h2>
+//                ${person.name}
+//                <span class="job">${person.job}</span>
+//            </h2>
+//            <p class="location">${person.city}</p>
+//            <p class="bio">${person.bio}</p>
+//        </div>
+//    `;
+
+//    document.body.innerHTML = markup;
+
+    const dogs = [
+        {name: 'pino', age: 2},
+        {name: 'gino', age: 5},
+        {name: 'tino', age: 4}
+    ];
+
+//    const markup2 = `
+//         <ul class="dogs">
+//            ${dogs.map(dog => `
+//                <li>${dog.name} is ${dog.age * 7} years old</li>`)
+//                .join('')}
+//         </ul>
+//    `;
+//
+//    document.body.innerHTML = markup2;
+    const song = {
+        name: "living room",
+        artist: 'matt demon',
+        featuring: 'Billi joe'
+    };
+
+//    const markup3 = `
+//
+//         <div class="song">
+//            <p>
+//             ${song.name} -
+//             ${song.artist}
+//             ${song.featuring ? `(Featuring ${song.featuring})` : ''}
+//            </p>
+//        </div>
+//       `;
+//
+//    document.body.innerHTML = markup3;
+
+    const beer = {
+        name: 'Corona',
+        brewery: 'Spagnola',
+        keywords: ['pale', 'cloudy', 'fresh']
+    };
+
+    function renderKeywords(keywords) {
+        return `
+        <ul>
+            ${keywords.map(keyword => `<li>${keyword}</li>`).join('')}
+        </ul>
+        `
+    }
+
+    const markup4 = `
+
+         <div class="beer">
+            <h2>${beer.name}</h2>
+            <p class="brewery">${beer.brewery}</p>
+            ${renderKeywords(beer.keywords)}
+        </div>
+       `;
+
+    document.body.innerHTML = markup4;
+</script>
+</body>
+</html>

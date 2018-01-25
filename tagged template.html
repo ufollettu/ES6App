@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>tagged template</title>
+    <style>
+        /*.hl {*/
+            /*background: yellow;*/
+        /*}*/
+        /*.nl {*/
+            /*background: skyblue;*/
+        /*}*/
+    </style>
+</head>
+<body>
+<div class="bio">
+
+</div>
+<script>
+//    // (vedi debugger dentro la funzione)
+//    // la funzione passa la const "sentence" e
+//    // ritorna un array con stringhe e
+//    // uno con i valori (dove ci sono le ${})
+//    // per cui, non sapendo quanti valori abbiamo
+//    // usiamo ...values, che li prende tutti
+//    // e li passiamo come [i] nel forEach
+//    // avendo la cura di mettere ${values[i] || ''}
+//    // per gestire il valore undefined alla fine dell'array
+//    function highlight(strings, ...values) {
+//        debugger
+//        let str = '';
+//        strings.forEach((string, i) => {
+//            str += `<span class="nl">${string}</span><span contenteditable class="hl">${values[i] || ''}</span>`;
+//            })
+//        return str;
+//    }
+//
+//    const name = 'snickers';
+//    const age = 100;
+//    // tag a function will make us pass the string to a fn and return new value "str"
+//    const sentence = highlight`my dog's name is ${name} and he is ${age} years old`;
+//
+//    console.log(sentence);
+//
+//    document.body.innerHTML = sentence;
+//    
+    const dict = {
+        HTML: 'hYPERTEXT mAKUP lANGUAGE',
+        CSS: 'CASCADING STYLE SHEETS',
+        JS: 'JAVASCRIPT'
+    };
+    // taggare una funzione serve a rendere più pulito il codice, senza dover
+    // srivere una funzione dentro una const, ma utilizzando i valori della stessa
+    function addAbbreviations(strings, ...values) {
+        const abbreviated = values.map(value => {
+            if(dict[value]) {
+                return `<abbr title="${dict[value]}">${value}</abbr>`;
+            }
+            return value; // to handle const outside "dict" object
+        });
+        return strings.reduce((sentence, string, i) => {
+            return `${sentence}${string}${abbreviated[i] || ''}`;
+        }, '')
+    }
+    
+    const first = 'pino';
+    const last = 'drudi';
+    const sentence = addAbbreviations`hello my name is ${first} ${last} and I love to code ${`HTML`}, ${`CSS`} and ${`JS`}`;
+
+    const bio = document.querySelector('.bio');
+    const p = document.createElement('p');
+    p.innerHTML = sentence;
+    bio.appendChild(p);
+    
+</script>
+</body>
+</html>
