@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Spread into a function</title>
+</head>
+<body>
+<script>
+    const inventors = ['primo', 'secondo', 'terzo'];
+    const newInventors = ['quarto', 'quinto', 'sesto'];
+    inventors.push(...newInventors); //spread into push() fn
+    console.log(inventors);
+
+    const fullName = ['primo', 'drudi'];
+
+    function ciao(nome, cognome) {
+        alert(`ciao ${nome} ${cognome}!`);
+    }
+
+    ciao(...fullName);
+</script>
+</body>
+</html>
