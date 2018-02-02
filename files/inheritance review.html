@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>inheritance review</title>
+</head>
+<body>
+<script>
+    //class decoration
+    class Dog {
+        constructor(name, breed){
+			this.name = name;
+			this.breed = breed;
+        } //don't need comma in methods inside classes
+        bark() {
+			console.log(`bau bau, mi chiamo ${this.name}`);
+		}
+		cuddle() {
+			console.log(`me piasci`);
+		}
+		//static method are not inherited to "new Dog", is only for class use
+		static info() {
+			console.log("ciao cane");
+		}
+		//getters, a proprety, not a method:
+        get description() {
+        	return `${this.name} is my name, ${this.breed} is my breed`
+        }
+        //setters provides end users to store values in class
+        set nicknames(value) {
+        	this.nick = value.trim();
+        }
+        get nicknames() {
+        	return this.nick;
+        }
+    }
+    //class expression
+//    const Dog = class {
+//
+//    };
+
+//    //Prototype Way:
+
+//    function Dog(name, breed) {
+//        this.name = name;
+//        this.breed = breed;
+//	}
+//
+//	Dog.prototype.bark = function() {
+//		console.log(`bau bau, mi chiamo ${this.name}`);
+//	};
+//
+//	Dog.prototype.bark = function() {
+//		console.log(`bau bau, mi chiamo ${this.name} e sono un ${this.breed}`);
+//	};
+//
+//	Dog.prototype.cuddle = function() {
+//		console.log(`me piasci`);
+//	};
+	const snick = new Dog('snick', 'alano');
+	const twix = new Dog('twix', 'mastino');
+
+	//extend class:
+    class MovieCollection extends Array {
+    	constructor(name, ...items) { //...rest param
+    		super(...items); //...spread operator, super() is needed to define the Array class before extend it
+            this.name = name;
+        }
+        add(movie) {
+    		this.push(movie);
+        }
+        topRated(limit = 10) {
+    		return this.sort((a, b) => (a.stars > b.stars ? -1 : 1)).slice(0, limit);
+        }
+    }
+
+    const movies = new MovieCollection('i miei film preferiti',
+        {name: 'il miglio verde', stars: 10},
+        {name: 'il miglio giallo', stars: 8},
+        {name: 'il miglio blu', stars: 5},
+        {name: 'il miglio rosa', stars: 7}
+    );
+
+    movies.add({name: 'il miglio dorato', stars: 9});
+
+    console.table(movies.topRated());
+    console.table(movies.topRated(2));
+
+    </script>
+</body>
+</html>
