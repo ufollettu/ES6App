@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>generators</title>
+</head>
+<body>
+<script>
+    //Genarator fn
+    function* listPeople() {
+        let i = 0;
+        yield i;
+        i++;
+        yield i;
+		i++;
+        yield i;
+	}
+    const people = listPeople();
+	//To call you need .next()
+	//	console.log(people.next()); //Pino Object
+	//	console.log(people.next()); //Lino Object
+	//	console.log(people.next()); //Gino Object
+
+	const inventors = [
+		{ first: 'Albert', last: 'Einstein', year: 1879 },
+		{ first: 'Isaac', last: 'Newton', year: 1643 },
+		{ first: 'Galileo', last: 'Galilei', year: 1564 },
+		{ first: 'Marie', last: 'Curie', year: 1867 },
+		{ first: 'Johannes', last: 'Kepler', year: 1571 },
+		{ first: 'Nicolaus', last: 'Copernicus', year: 1473 },
+		{ first: 'Max', last: 'Planck', year: 1858 },
+	];
+
+	function* loop(arr) {
+        for(const item of arr) {
+        	yield item
+        }
+	}
+
+	const inventorGen = loop(inventors);
+//	console.log(inventorGen.next()); // einstein
+//	console.log(inventorGen.next()); // newton
+//	console.log(inventorGen.next()); // Galileo
+
+    //we can yse generators to simulate async behaviour and write like Promises
+    function ajax(url) {
+        fetch(url)
+            .then(data => data.json())
+            .then(data => dataGen.next(data));
+	}
+
+    function* steps() {
+        const beers = yield ajax('http://api.react.beer/v2/search?q=hops&type=beer');
+//		console.log(beers);
+		const wes = yield ajax('https://api.github.com/users/wesbos');
+//		console.log(wes);
+		const fatJoe = yield ajax('https://api.discogs.com/artists/51988');
+//		console.log(fatJoe);
+	}
+
+	const dataGen = steps();
+    dataGen.next(); //kick it off - we need this line to start the generator steps
+
+    
+    function* lyrics() {
+      yield `primo verso`;
+      yield `secondo verso`;
+      yield `terzo verso`;
+      yield `quarto verso`;
+	}
+
+	const song = lyrics();
+
+    //generators works fine with for of loop:
+    for(const line of song) {
+		console.log(line);
+	}
+</script>
+</body>
+</html>
