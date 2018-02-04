@@ -2,9 +2,14 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>JS Modules</title>
+  <title>System JS</title>
 </head>
 <body>
-  <script src="_build/bundle.js"></script>
+  <script src="https://cdn.polyfill.io/v2/polyfill.js"></script>
+  <script src="https://jspm.io/system@0.19.js"></script>
+  <script>
+    System.config({ transpiler: 'babel' });
+    System.import('./main.js');
+  </script>
 </body>
 </html>
