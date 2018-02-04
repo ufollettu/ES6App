@@ -7,7 +7,6 @@
     "build": "webpack --progress --watch",
     "babel": "babel app.js --watch --out-file app-compiled.js",
     "server": "browser-sync start --directory --server  --files '*.js, *.html, *.css'"
-
   },
   "author": "",
   "license": "ISC",
