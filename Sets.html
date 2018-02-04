@@ -37,13 +37,19 @@
     brunch.add('gino');
     //ready to open!
     const line = brunch.values();
-	console.log(line.next().value); // brunch = {pino, lino, gino} line = {lino, gino}
-	console.log(line.next().value); // brunch = {pino, lino, gino} line = {gino}
-	console.log(line.next().value); // brunch = {pino, lino, gino} line = {}
+//	console.log(line.next().value); // brunch = {pino, lino, gino} line = {lino, gino}
+//	console.log(line.next().value); // brunch = {pino, lino, gino} line = {gino}
+//	console.log(line.next().value); // brunch = {pino, lino, gino} line = {}
 	brunch.add('dino');
 	brunch.add('sino');
-	console.log(line.next().value); // brunch = {pino, lino, gino, dino, sino} line = {sino}
-	console.log(line.next().value); // brunch = {pino, lino, gino, dino, sino} line = {}
+//	console.log(line.next().value); // brunch = {pino, lino, gino, dino, sino} line = {sino}
+//	console.log(line.next().value); // brunch = {pino, lino, gino, dino, sino} line = {}
+
+    // WeakSet (can only contain objects:
+    const dog1 = {name: 'bau', age: 3};
+    const dog2 = {name: 'woof', age: 5};
+    const weakSauce = new WeakSet([dog1, dog2]);
+    //you cannot iterate a WeakSet
 
 </script>
 </body>
