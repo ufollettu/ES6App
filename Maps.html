@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Maps</title>
+</head>
+<body>
+<button>Snakes</button>
+<button>Cry</button>
+<button>Smell</button>
+<button>Like</button>
+<button>Priests</button>
+
+<script>
+    //Maps are like Sets, but returns Objects:
+    const dogs = new Map();
+
+    dogs.set('Cane1', 3);
+    dogs.set('Cane2', 6);
+    dogs.set('Cane3', 9);
+
+//    dogs.forEach((val, key) => console.log(val, key));
+
+    for(const dog of dogs) {
+//		console.log(dog); //return an array
+	}
+    //you need to destructuring the returned array
+	for(const [key, val] of dogs) {
+//		console.log(key, val); //return an array
+	}
+
+	// you can use an object to map Metadata like clicks:
+     const clickCounts = new Map();
+     const buttons = document.querySelectorAll('button');
+
+      buttons.forEach(button => {
+      	clickCounts.set(button, 0);
+      	button.addEventListener('click', function () {
+            const val = clickCounts.get(this); //this = button
+            clickCounts.set(this, val + 1); //map clicks increment
+			console.log(clickCounts);
+		})
+      });
+
+    //WeakMaps
+	let dog1 = {name: 'bau'};
+	let dog2 = {name: 'woof'};
+
+	const strongMap = new Map();
+	const weakMap = new WeakMap();
+
+	strongMap.set(dog1, 'is the best');
+	weakMap.set(dog2, 'is the best');
+
+	dog1 = null;
+	dog2 = null;
+
+	console.log(strongMap); // still contain dog1
+	console.log(weakMap); // return empty obj{}
+
+</script>
+</body>
+</html>
